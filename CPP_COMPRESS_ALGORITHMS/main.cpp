@@ -340,14 +340,14 @@ void arithmetic_addaptive_test() {
 }
 
 int main(int argc, char *argv[]) {
-    //lzari_test();
+    lzari_test();
     //lzh_test();
-    //lzw_test();
-    //lzss_test();
-    //lz77_test();
-    //rle_test();
-    //huffman_test();
-    //huffman_addaptive_test();
+    lzw_test();
+    lzss_test();
+    lz77_test();
+    rle_test();
+    huffman_test();
     arithmetic_addaptive_test();
+    huffman_addaptive_test();
     return EXIT_SUCCESS;
 }
