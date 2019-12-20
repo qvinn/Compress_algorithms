@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.10.0, 2019-12-19T15:15:47. -->
+<!-- Written by QtCreator 4.10.0, 2019-12-19T23:12:19. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -137,11 +137,11 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Запуск I:/Quantum_Radiolocation/Work_3/Analizing/Analizing/main.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Запуск </value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.I:/Quantum_Radiolocation/Work_3/Analizing/Analizing/main.py</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">C:\Users\qvinn\AppData\Local\Programs\Python\Python37\python.exe</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">I:/Quantum_Radiolocation/Work_3/Analizing/Analizing/main.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script"></value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>

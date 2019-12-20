@@ -14,6 +14,7 @@ using namespace std;
 unsigned int start_time;
 
 struct operation_info {
+    char *algo_name;
     long start_size;
     long final_size;
     float percent_compression;
@@ -40,7 +41,7 @@ void create_log(char *name_logfile)
     out.open(name_logfile);          // окрываем файл для записи
     if (out.is_open())
         {
-            out << "start_size,final_size,percent_compression,time_encode,time_decode" << std::endl;
+            out << "algo_name,start_size,final_size,percent_compression,time_encode,time_decode" << std::endl;
         }
     out.close();            // закрываем файл после записи
 }
@@ -53,7 +54,7 @@ void add_info(char *name_logfile, operation_info info)
     out.open(name_logfile, ios_base::app);          // окрываем файл для записи
     if (out.is_open())
         {
-            out << info.start_size<<"|"<<info.final_size<<"|"<<info.percent_compression<<"|"<<info.time_encode<<"|"<<info.time_decode << std::endl;
+            out <<info.algo_name<<"|"<< info.start_size<<"|"<<info.final_size<<"|"<<info.percent_compression<<"|"<<info.time_encode<<"|"<<info.time_decode << std::endl;
         }
     out.close();
 }
@@ -62,7 +63,7 @@ void add_info(char *name_logfile, operation_info info)
 float calculate_percent_compression(long start_size, long final_size)
 {
     float result = (100 * final_size)/start_size;
-    return 1;
+    return result;
 }
 
 // Узнаем размер файла
@@ -80,8 +81,31 @@ long GetFileSize(std::string filename)
     return rc == 0 ? stat_buf.st_size : -1;
 }
 
+bool clear()
+{
+    if(( remove("file_R.txt") != 0))    // удаление файлов
+    {
+        std::cout << "Error was occurred: file_R.txt" << endl;
+        return false;
+    } else
+    {
+        std::cout << "File was deleted successfully: file_R.txt" << endl;
+    }
+
+    if(( remove("file_N.txt") != 0))    // удаление файлов
+    {
+        std::cout << "Error was occurred: file_N.txt" << endl;
+        return false;
+    } else
+    {
+        std::cout << "File was deleted successfully: file_N.txt" << endl;
+    }
+    return true;
+}
+
 void lzari_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "LZARI";                           // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     // РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ LZAri
     printf("START LZARI \n");
@@ -125,6 +149,7 @@ void lzari_test(char *file, char *logfile) {
 
 void lzh_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "LZH";                           // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ LZH
     printf("START LZH \n");
@@ -170,6 +195,7 @@ void lzh_test(char *file, char *logfile) {
 
 void lzw_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "LZW";                             // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ LZW
     printf("START LZW \n");
@@ -215,6 +241,7 @@ void lzw_test(char *file, char *logfile) {
 
 void lzss_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "LZSS";                            // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ LZSS
     printf("START LZSS \n");
@@ -254,6 +281,7 @@ void lzss_test(char *file, char *logfile) {
 
 void lz77_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "LZ77";                            // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ LZ77
     printf("START LZ77 \n");
@@ -295,6 +323,7 @@ void lz77_test(char *file, char *logfile) {
 
 void rle_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "RLE";                             // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ RLE
     printf("START RLE \n");
@@ -340,6 +369,7 @@ void rle_test(char *file, char *logfile) {
 
 void huffman_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "HUFFMAN";                         // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ HUFFMAN
     printf("START HUFFMAN \n");
@@ -383,6 +413,7 @@ void huffman_test(char *file, char *logfile) {
 
 void huffman_addaptive_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "ADAPTIVE_HUFFMAN";                // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ HUFFMAN_ADAPTIVE
     printf("START HUFFMAN_ADAPTIVE \n");
@@ -428,6 +459,7 @@ void huffman_addaptive_test(char *file, char *logfile) {
 
 void arithmetic_addaptive_test(char *file, char *logfile) {
     operation_info info;                                // Создадим структуру
+    info.algo_name = "ARITHMETIC_ADAPTIVE";             // Добавим название алгоритма
     info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
     //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ ARITHMETIC_ADAPTIVE
     printf("START ARITHMETIC_ADAPTIVE \n");
@@ -462,30 +494,34 @@ void automating_tests(int number)
     {
         log_pattern.append(std::to_string(i));
         log_pattern.append(log_csv);
-        //cout << log_pattern << endl;
         char clogstr[log_pattern.size() + 1];
         log_pattern.copy(clogstr, log_pattern.size() + 1);
         clogstr[log_pattern.size()] = '\0';
-        //cout << clogstr << endl;
 
         log_file.append(std::to_string(i));
         log_file.append(log_txt);
-        //cout << log_file << endl;
         char ctxtstr[log_file.size() + 1];
         log_file.copy(ctxtstr, log_file.size() + 1);
         ctxtstr[log_file.size()] = '\0';
-        //cout << ctxtstr << endl << endl;
 
-
+        // Создадим ЛОГ-файл для прохождения алгоритмов
         create_log(clogstr);
+        // Пройдемся всеми алгоритмами по указанному файлу и соберем сатистику
         lzari_test(ctxtstr, clogstr);
+        clear();
         //lzh_test();   // Временно не работает(вообще)
         lzw_test(ctxtstr, clogstr);
+        clear();
         lzss_test(ctxtstr, clogstr);
+        clear();
         lz77_test(ctxtstr, clogstr);
+        clear();
         rle_test(ctxtstr, clogstr);
-        huffman_test(ctxtstr, clogstr);
+        clear();
+        //huffman_test(ctxtstr, clogstr); // Не справляется с большими файлами
+        //clear();
         arithmetic_addaptive_test(ctxtstr, clogstr);
+        clear();
         //huffman_addaptive_test(ctxtstr, clogstr);(в цикле - является причиной прерывания цикла)
 
         log_pattern = "log";
@@ -494,22 +530,6 @@ void automating_tests(int number)
 }
 
 int main(int argc, char *argv[]) {
-     automating_tests(2); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
-//    // Создадим ЛОГ-файл для прохождения алгоритмов
-//    std::string s = "log.csv";
-//    char cstr[s.size() + 1];
-//    strcpy(cstr, s.c_str());	// or pass &s[0]
-//    create_log(cstr);
-//    // Пройдемся всеми алгоритмами по указанному файлу и соберем сатистику
-//    lzari_test("file.txt", "log.csv");
-//    //lzh_test();   // Временно не работает
-//    lzw_test("file.txt", "log.csv");
-//    lzss_test("file.txt", "log.csv");
-//    lz77_test("file.txt", "log.csv");
-//    rle_test("file.txt", "log.csv");
-//    huffman_test("file.txt", "log.csv");
-//    arithmetic_addaptive_test("file.txt", "log.csv");
-//    huffman_addaptive_test("file.txt", "log.csv");
-//    // Конец прохождения
-//    return EXIT_SUCCESS;
+    automating_tests(3); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
+    return EXIT_SUCCESS;
 }
