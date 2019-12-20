@@ -440,14 +440,14 @@ void huffman_addaptive_test(char *file, char *logfile) {
     COMPRESSED_FILE *infile_1;
     FILE *outfile_1;
     infile_1 = huffman_adaptive.OpenInputCompressedFile("file_R.txt");
-    outfile_1 =  fopen("file_N.txt", "wb");
+    outfile_1 = fopen("file_N.txt", "wb");
 
     printf("Decode: \n");
     start_clock();                // начальное время
     huffman_adaptive.ExpandFile(infile_1, outfile_1);
     info.time_decode = stop_clock();                    // Запишем в структуру время деархивации
 
-    huffman_adaptive.CloseOutputCompressedFile(infile_1);
+    huffman_adaptive.CloseInputCompressedFile(infile_1);
     fclose(outfile_1);
 
     info.percent_compression = calculate_percent_compression(info.start_size, info.final_size);   // Запишем в структуру процент "полезности"
@@ -520,16 +520,16 @@ void automating_tests(int number)
         clear();
         //huffman_test(ctxtstr, clogstr); // Не справляется с большими файлами
         //clear();
+        huffman_addaptive_test(ctxtstr, clogstr);
+        clear();
         arithmetic_addaptive_test(ctxtstr, clogstr);
         clear();
-        //huffman_addaptive_test(ctxtstr, clogstr);(в цикле - является причиной прерывания цикла)
-
         log_pattern = "log";
         log_file = "file";
     }
 }
 
 int main(int argc, char *argv[]) {
-    automating_tests(3); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
+    automating_tests(2); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
     return EXIT_SUCCESS;
 }
