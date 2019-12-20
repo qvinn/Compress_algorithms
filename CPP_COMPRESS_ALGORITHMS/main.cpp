@@ -155,6 +155,9 @@ void lzh_test(char *file, char *logfile) {
     printf("START LZH \n");
     LZH lzh;
 
+    // Обновим переменные, необходимые для вычеслений
+    lzh.reset_vars();
+
     lzh.infile = fopen(file, "rb");
     if(lzh.infile == nullptr){printf("File does not exist!");}
     lzh.outfile =  fopen("file_R.txt", "wb");
@@ -167,13 +170,10 @@ void lzh_test(char *file, char *logfile) {
     fclose(lzh.infile);
     fclose(lzh.outfile);
     info.final_size = GetFileSize("file_R.txt");        // Запишем в структуру начальный размер файла
+
     // Обновим переменные, необходимые для вычеслений
-    lzh.textsize = 0; lzh.codesize = 0; lzh.printcount = 0;
-    lzh.getbuf = 0;
-    lzh.getlen = 0;
-    lzh.putbuf = 0;
-    lzh.putlen = 0;
-    ------------------------------------------------------------
+    lzh.reset_vars();
+
     lzh.infile = fopen("file_R.txt", "rb");
     if(lzh.infile == nullptr){printf("File does not exist!");}
     lzh.outfile =  fopen("file_N.txt", "wb");
@@ -509,7 +509,7 @@ void automating_tests(int number)
         // Пройдемся всеми алгоритмами по указанному файлу и соберем сатистику
         lzari_test(ctxtstr, clogstr);
         clear();
-        //lzh_test();   // Временно не работает(вообще)
+        lzh_test(ctxtstr, clogstr);   // Worked(with bugs)
         lzw_test(ctxtstr, clogstr);
         clear();
         lzss_test(ctxtstr, clogstr);

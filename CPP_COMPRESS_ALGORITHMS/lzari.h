@@ -46,7 +46,7 @@
             void StartDecode(void);
             int DecodeChar(void);
             int DecodePosition(void);
-            unsigned char  text_buf[N + F - 1]; /* кольцевоё буфер размера N, с дополнительными (F-1) байтами для сравнения строк */
+            unsigned char text_buf[N + F - 1]; /* кольцевоё буфер размера N, с дополнительными (F-1) байтами для сравнения строк */
             int match_position, match_length,  /* of longest match. Эти значения устанавливаются функцией InsertNode()*/
             lson[N + 1], rson[N + 257], dad[N + 1];  /* левые и правые потомки  и родители - составляющие бинарного дерева. */
     };
