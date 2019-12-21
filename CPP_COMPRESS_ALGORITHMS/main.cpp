@@ -587,37 +587,37 @@ void auto_indexing_file(std::string *file,std::string type, int i)
 
 void automating_tests(int number)
 {
-    std::string log_pattern = "log";
-    std::string main_file = "file";
+    std::string log_pattern = "Logs/log";
+    std::string main_file = "Files/file";
     std::string type_csv = ".csv";
-    std::string type_txt = ".txt";
+    std::string type_txt = ".adc"; //txt
 
-    std::string lzari_test_file_encode = "lzari_test_file_encode";
-    std::string lzari_test_file_decode = "lzari_test_file_decode";
+    std::string lzari_test_file_encode = "Data/lzari_test_file_encode";
+    std::string lzari_test_file_decode = "Data/lzari_test_file_decode";
 
-    std::string lzw_test_file_encode = "lzw_test_file_encode";
-    std::string lzw_test_file_decode = "lzw_test_file_decode";
+    std::string lzw_test_file_encode = "Data/lzw_test_file_encode";
+    std::string lzw_test_file_decode = "Data/lzw_test_file_decode";
 
-    std::string lzss_test_file_encode = "lzss_test_file_encode";
-    std::string lzss_test_file_decode = "lzss_test_file_decode";
+    std::string lzss_test_file_encode = "Data/lzss_test_file_encode";
+    std::string lzss_test_file_decode = "Data/lzss_test_file_decode";
 
-    std::string lz77_test_file_encode = "lz77_test_file_encode";
-    std::string lz77_test_file_decode = "lz77_test_file_decode";
+    std::string lz77_test_file_encode = "Data/lz77_test_file_encode";
+    std::string lz77_test_file_decode = "Data/lz77_test_file_decode";
 
-    std::string rle_test_file_encode = "rle_test_file_encode";
-    std::string rle_test_file_decode = "rle_test_file_decode";
+    std::string rle_test_file_encode = "Data/rle_test_file_encode";
+    std::string rle_test_file_decode = "Data/rle_test_file_decode";
 
-    std::string arithmetic_addaptive_test_file_encode = "arithmetic_addaptive_test_file_encode";
-    std::string arithmetic_addaptive_test_file_decode = "arithmetic_addaptive_test_file_decode";
+    std::string arithmetic_addaptive_test_file_encode = "Data/arithmetic_addaptive_test_file_encode";
+    std::string arithmetic_addaptive_test_file_decode = "Data/arithmetic_addaptive_test_file_decode";
 
-    std::string lzh_test_file_encode = "lzh_test_file_encode";
-    std::string lzh_test_file_decode = "lzh_test_file_decode";
+    std::string lzh_test_file_encode = "Data/lzh_test_file_encode";
+    std::string lzh_test_file_decode = "Data/lzh_test_file_decode";
 
-    std::string huffman_test_file_encode = "huffman_test_file_encode";
-    std::string huffman_test_file_decode = "huffman_test_file_decode";
+    std::string huffman_test_file_encode = "Data/huffman_test_file_encode";
+    std::string huffman_test_file_decode = "Data/huffman_test_file_decode";
 
-    std::string huffman_addaptive_test_file_encode = "huffman_addaptive_test_file_encode";
-    std::string huffman_addaptive_test_file_decode = "huffman_addaptive_test_file_decode";
+    std::string huffman_addaptive_test_file_encode = "Data/huffman_addaptive_test_file_encode";
+    std::string huffman_addaptive_test_file_decode = "Data/huffman_addaptive_test_file_decode";
 
     for(int i = 1; i < number; i++)
     {
@@ -647,7 +647,7 @@ void automating_tests(int number)
         char lzari_file_path_decode[lzari_test_file_decode.size() + 1];lzari_test_file_decode.copy(lzari_file_path_decode, lzari_test_file_decode.size() + 1);lzari_file_path_decode[lzari_test_file_decode.size()] = '\0';
 
         lzari_test(main_file_path,lzari_file_path_encode,lzari_file_path_decode,log_path);
-        clear(lzari_file_path_encode, lzari_file_path_decode);
+//        clear(lzari_file_path_encode, lzari_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//LZW
@@ -657,7 +657,7 @@ void automating_tests(int number)
         char lzw_file_path_decode[lzw_test_file_decode.size() + 1];lzw_test_file_decode.copy(lzw_file_path_decode, lzw_test_file_decode.size() + 1);lzw_file_path_decode[lzw_test_file_decode.size()] = '\0';
 
         lzw_test(main_file_path,lzw_file_path_encode,lzw_file_path_decode, log_path);
-        clear(lzw_file_path_encode,lzw_file_path_decode);
+//        clear(lzw_file_path_encode,lzw_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//LZSS
@@ -667,7 +667,7 @@ void automating_tests(int number)
         char lzss_file_path_decode[lzss_test_file_decode.size() + 1];lzss_test_file_decode.copy(lzss_file_path_decode, lzss_test_file_decode.size() + 1);lzss_file_path_decode[lzss_test_file_decode.size()] = '\0';
 
         lzss_test(main_file_path,lzss_file_path_encode,lzss_file_path_decode,log_path);
-        clear(lzss_file_path_encode, lzss_file_path_decode);
+//        clear(lzss_file_path_encode, lzss_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//LZ77
@@ -677,7 +677,7 @@ void automating_tests(int number)
         char lz77_file_path_decode[lz77_test_file_decode.size() + 1];lz77_test_file_decode.copy(lz77_file_path_decode, lz77_test_file_decode.size() + 1);lz77_file_path_decode[lz77_test_file_decode.size()] = '\0';
 
         lz77_test(main_file_path,lz77_file_path_encode,lz77_file_path_decode,log_path);
-        clear(lz77_file_path_encode, lz77_file_path_decode);
+//        clear(lz77_file_path_encode, lz77_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//RLE
@@ -687,7 +687,7 @@ void automating_tests(int number)
         char rle_file_path_decode[rle_test_file_decode.size() + 1];rle_test_file_decode.copy(rle_file_path_decode, rle_test_file_decode.size() + 1);rle_file_path_decode[rle_test_file_decode.size()] = '\0';
 
         rle_test(main_file_path,rle_file_path_encode,rle_file_path_decode,log_path);
-        clear(rle_file_path_encode, rle_file_path_decode);
+//        clear(rle_file_path_encode, rle_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//ARITHMETIC_ADDAPTIVE
@@ -697,7 +697,7 @@ void automating_tests(int number)
         char arith_addap_file_path_decode[arithmetic_addaptive_test_file_decode.size() + 1];arithmetic_addaptive_test_file_decode.copy(arith_addap_file_path_decode, arithmetic_addaptive_test_file_decode.size() + 1);arith_addap_file_path_decode[arithmetic_addaptive_test_file_decode.size()] = '\0';
 
         arithmetic_addaptive_test(main_file_path,arith_addap_file_path_encode,arith_addap_file_path_decode,log_path);
-        clear(arith_addap_file_path_encode, arith_addap_file_path_decode);
+//        clear(arith_addap_file_path_encode, arith_addap_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//HUFFMAN_ADDAPTIVE
@@ -707,7 +707,7 @@ void automating_tests(int number)
         char huff_addap_file_path_decode[huffman_addaptive_test_file_decode.size() + 1];huffman_addaptive_test_file_decode.copy(huff_addap_file_path_decode, huffman_addaptive_test_file_decode.size() + 1);huff_addap_file_path_decode[huffman_addaptive_test_file_decode.size()] = '\0';
 
         huffman_addaptive_test(main_file_path,huff_addap_file_path_encode,huff_addap_file_path_decode,log_path);
-        clear(huff_addap_file_path_encode, huff_addap_file_path_decode);
+//        clear(huff_addap_file_path_encode, huff_addap_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//LZH (worked(with bugs))
@@ -717,7 +717,7 @@ void automating_tests(int number)
         char lzh_file_path_decode[lzh_test_file_decode.size() + 1];lzh_test_file_decode.copy(lzh_file_path_decode, lzh_test_file_decode.size() + 1);lzh_file_path_decode[lzh_test_file_decode.size()] = '\0';
 
         lzh_test(main_file_path,lzh_file_path_encode,lzh_file_path_decode,log_path);
-        clear(lzh_file_path_encode, lzh_file_path_decode);
+//        clear(lzh_file_path_encode, lzh_file_path_decode);
         //=============================================================
 
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//HUFFMAN (не справляется с большими файлами)
@@ -730,40 +730,54 @@ void automating_tests(int number)
         //clear(huff_file_path_encode, huff_file_path_decode);
         //=============================================================
 
-        log_pattern = "log";
-        main_file = "file";
+        {
+            clear(lzari_file_path_encode, lzari_file_path_decode);
+            clear(lzw_file_path_encode,lzw_file_path_decode);
+            clear(lzss_file_path_encode, lzss_file_path_decode);
+            clear(lz77_file_path_encode, lz77_file_path_decode);
+            clear(rle_file_path_encode, rle_file_path_decode);
+            clear(arith_addap_file_path_encode, arith_addap_file_path_decode);
+            clear(huff_addap_file_path_encode, huff_addap_file_path_decode);
+            clear(lzh_file_path_encode, lzh_file_path_decode);
+            //clear(huff_file_path_encode, huff_file_path_decode);
+        }
 
-        lzari_test_file_encode = "lzari_test_file_encode";
-        lzari_test_file_decode = "lzari_test_file_decode";
+        log_pattern = "Logs/log";
+        main_file = "Files/file";
 
-        lzw_test_file_encode = "lzw_test_file_encode";
-        lzw_test_file_decode = "lzw_test_file_decode";
+        lzari_test_file_encode = "Data/lzari_test_file_encode";
+        lzari_test_file_decode = "Data/lzari_test_file_decode";
 
-        lzss_test_file_encode = "lzss_test_file_encode";
-        lzss_test_file_decode = "lzss_test_file_decode";
+        lzw_test_file_encode = "Data/lzw_test_file_encode";
+        lzw_test_file_decode = "Data/lzw_test_file_decode";
 
-        lz77_test_file_encode = "lz77_test_file_encode";
-        lz77_test_file_decode = "lz77_test_file_decode";
+        lzss_test_file_encode = "Data/lzss_test_file_encode";
+        lzss_test_file_decode = "Data/lzss_test_file_decode";
 
-        rle_test_file_encode = "rle_test_file_encode";
-        rle_test_file_decode = "rle_test_file_decode";
+        lz77_test_file_encode = "Data/lz77_test_file_encode";
+        lz77_test_file_decode = "Data/lz77_test_file_decode";
 
-        arithmetic_addaptive_test_file_encode = "arithmetic_addaptive_test_file_encode";
-        arithmetic_addaptive_test_file_decode = "arithmetic_addaptive_test_file_decode";
+        rle_test_file_encode = "Data/rle_test_file_encode";
+        rle_test_file_decode = "Data/rle_test_file_decode";
 
-        lzh_test_file_encode = "lzh_test_file_encode";
-        lzh_test_file_decode = "lzh_test_file_decode";
+        arithmetic_addaptive_test_file_encode = "Data/arithmetic_addaptive_test_file_encode";
+        arithmetic_addaptive_test_file_decode = "Data/arithmetic_addaptive_test_file_decode";
 
-        huffman_test_file_encode = "huffman_test_file_encode";
-        huffman_test_file_decode = "huffman_test_file_decode";
+        lzh_test_file_encode = "Data/lzh_test_file_encode";
+        lzh_test_file_decode = "Data/lzh_test_file_decode";
 
-        huffman_addaptive_test_file_encode = "huffman_addaptive_test_file_encode";
-        huffman_addaptive_test_file_decode = "huffman_addaptive_test_file_decode";
+        huffman_test_file_encode = "Data/huffman_test_file_encode";
+        huffman_test_file_decode = "Data/huffman_test_file_decode";
+
+        huffman_addaptive_test_file_encode = "Data/huffman_addaptive_test_file_encode";
+        huffman_addaptive_test_file_decode = "Data/huffman_addaptive_test_file_decode";
 
     }
 }
 
 int main(int argc, char *argv[]) {
-    automating_tests(3); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
+    printf("|---------------------ALL_TESTS_STARTED-------------------|");
+    automating_tests(5); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
+    printf("|---------------------ALL_TESTS_ENDED---------------------|");
     return EXIT_SUCCESS;
 }
