@@ -15,7 +15,7 @@
         private:
             void reheap(unsigned short heap_entry);
             void compress_image();
-            unsigned short  generate_code_table();
+            unsigned short generate_code_table();
             void build_code_tree();
             void build_initial_heap();
             void get_frequency_count();

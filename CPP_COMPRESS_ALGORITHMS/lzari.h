@@ -4,30 +4,49 @@
 
     #include "main.h"
 
-    #define M   15
-    #define Q1  (1UL << M)
-    #define Q2  (2 * Q1)
-    #define Q3  (3 * Q1)
-    #define Q4  (4 * Q1)
+    #define EXIT_SUCCESS 0
+    #define EXIT_FAILURE 1
+    #define N 4096                                  /* размер кольцевого буфера */
+    #define F 60                                    /* верхний предел для match_length */
+    #define THRESHOLD 2                             /* строка кодируется в позицию и длину если match_length > THRESHOLD */
+    #define NIL N                                   /* индекс для корня дерева двоичного поиска */
+    #define M 15
+    #define Q1 (1UL << M)                           /* Q1 (= 2^M) должно быть достаточно большим, но не больше чем unsigned long 4 * Q1 * (Q1 - 1)  */
+    #define Q2 (2 * Q1)
+    #define Q3 (3 * Q1)
+    #define Q4 (4 * Q1)
     #define MAX_CUM (Q1 - 1)
-    #define N_CHAR  (256 - THRESHOLD + F)
-    #define N 4096 /* размер кольцевого буфера */
-    #define F 60   /* верхний предел для match_length */
-    #define THRESHOLD 2 /* строка кодируется в позицию и длину если match_length > THRESHOLD */
-    #define NIL N /* индекс для корня дерева двоичного поиска */
+    #define N_CHAR (256 - THRESHOLD + F)            /* код символа = 0, 1, ..., N_CHAR - 1 */
 
     class LZAri {
         public:
             LZAri();
             ~LZAri();
+            FILE *infile;//*infile;
+            FILE *outfile;//*outfile;
             void Encode(void);
             void Decode(void);
-            FILE  *infile, *outfile;
-            unsigned long int  textsize = 0, codesize = 0, printcount = 0;
-            unsigned long int  low = 0, high = Q4, value = 0;
-            int  shifts = 0;
+            void reset_vars();
 
         private:
+            unsigned long int textsize;// = 0;
+            unsigned long int codesize;// = 0;
+            unsigned long int printcount;// = 0;
+            unsigned char text_buf[N + F - 1];      /* кольцевоё буфер размера N, с дополнительными (F-1) байтами для сравнения строк of longest match. Эти значения устанавливаются функцией InsertNode() левые и правые потомки и родители - составляющие бинарного дерева.*/
+            int match_position;
+            int match_length;
+            int lson[N + 1];
+            int rson[N + 257];
+            int dad[N + 1];
+            unsigned long int low;// = 0;
+            unsigned long int high;// = Q4;
+            unsigned long int value;// = 0;
+            int shifts;// = 0;
+            int char_to_sym[N_CHAR];
+            int sym_to_char[N_CHAR + 1];
+            unsigned int sym_freq[N_CHAR + 1];      /* частота символов */
+            unsigned int sym_cum[N_CHAR + 1];       /* кумулятивная частота символов */
+            unsigned int position_cum[N + 1];       /* кумулятивная частота для позиций */
             void Error(char *message);
             void PutBit(int bit);
             void FlushBitBuffer(void);
@@ -46,9 +65,6 @@
             void StartDecode(void);
             int DecodeChar(void);
             int DecodePosition(void);
-            unsigned char text_buf[N + F - 1]; /* кольцевоё буфер размера N, с дополнительными (F-1) байтами для сравнения строк */
-            int match_position, match_length,  /* of longest match. Эти значения устанавливаются функцией InsertNode()*/
-            lson[N + 1], rson[N + 257], dad[N + 1];  /* левые и правые потомки  и родители - составляющие бинарного дерева. */
     };
 
-#endif // LZH_H
+#endif // LZARI_H
