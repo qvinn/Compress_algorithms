@@ -43,7 +43,7 @@ void create_log(char *name_logfile)
     out.open(name_logfile);          // окрываем файл для записи
     if (out.is_open())
         {
-            out << "algo_name,start_size,final_size,percent_compression,time_encode,time_decode,bytes_loss,percent_bytes_loss" << std::endl;
+            out << "algo_name|start_size|final_size|percent_compression|time_encode|time_decode|bytes_loss|percent_bytes_loss" << std::endl;
         }
     out.close();            // закрываем файл после записи
 }
@@ -730,17 +730,17 @@ void automating_tests(int number)
         //clear(huff_file_path_encode, huff_file_path_decode);
         //=============================================================
 
-        {
-            clear(lzari_file_path_encode, lzari_file_path_decode);
-            clear(lzw_file_path_encode,lzw_file_path_decode);
-            clear(lzss_file_path_encode, lzss_file_path_decode);
-            clear(lz77_file_path_encode, lz77_file_path_decode);
-            clear(rle_file_path_encode, rle_file_path_decode);
-            clear(arith_addap_file_path_encode, arith_addap_file_path_decode);
-            clear(huff_addap_file_path_encode, huff_addap_file_path_decode);
-            clear(lzh_file_path_encode, lzh_file_path_decode);
-            //clear(huff_file_path_encode, huff_file_path_decode);
-        }
+//        {
+//            clear(lzari_file_path_encode, lzari_file_path_decode);
+//            clear(lzw_file_path_encode,lzw_file_path_decode);
+//            clear(lzss_file_path_encode, lzss_file_path_decode);
+//            clear(lz77_file_path_encode, lz77_file_path_decode);
+//            clear(rle_file_path_encode, rle_file_path_decode);
+//            clear(arith_addap_file_path_encode, arith_addap_file_path_decode);
+//            clear(huff_addap_file_path_encode, huff_addap_file_path_decode);
+//            clear(lzh_file_path_encode, lzh_file_path_decode);
+//            //clear(huff_file_path_encode, huff_file_path_decode);
+//        }
 
         log_pattern = "Logs/log";
         main_file = "Files/file";
