@@ -1,0 +1,9 @@
+algo_name|start_size|final_size|percent_compression|time_encode|time_decode|bytes_loss|percent_bytes_loss
+LZARI|32771|27077|82|204|20|0|0|
+LZW|32771|32313|98|8|5|0|0|
+LZSS|32771|35416|108|7|4|0|0|
+LZ77|32771|40789|124|148|61|0|0|
+RLE|32771|33070|100|1|2|0|0|
+ARITHMETIC_ADAPTIVE|32771|26783|81|13|16|0|0|
+ADAPTIVE_HUFFMAN|32771|27081|82|10|9|0|0|
+LZH|32771|27130|82|19|7|0|0|
