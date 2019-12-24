@@ -619,7 +619,7 @@ void automating_tests(int number)
     std::string huffman_addaptive_test_file_encode = "Data/huffman_addaptive_test_file_encode";
     std::string huffman_addaptive_test_file_decode = "Data/huffman_addaptive_test_file_decode";
 
-    for(int i = 1; i < number; i++)
+    for(int i = 1; i <= number; i++)
     {
         // Создадим индексированное название для файла-лога: log<index>.csv
         log_pattern.append(std::to_string(i));
@@ -777,7 +777,7 @@ void automating_tests(int number)
 
 int main(int argc, char *argv[]) {
     printf("|---------------------ALL_TESTS_STARTED-------------------|");
-    automating_tests(5); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
+    automating_tests(4); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
     printf("|---------------------ALL_TESTS_ENDED---------------------|");
     return EXIT_SUCCESS;
 }
