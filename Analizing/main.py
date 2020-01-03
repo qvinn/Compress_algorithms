@@ -33,9 +33,7 @@ time_encode_final = []
 time_decode_final = []
 bytes_loss_final = []
 percent_bytes_loss_final = []
-
-# x-coordinates of left sides of bars
-left = [1, 2, 3, 4, 5, 6, 7, 8]
+left = []                       # x-coordinates of left sides of bars
 
  #----------Read a CSV file using csv.DictReader----------#
 def csv_dict_reader(file_obj):
@@ -99,6 +97,7 @@ def show_stat(paths):
         time_decode_final.append(int(t/len(start_size)))
         bytes_loss_final.append(int(u/len(start_size)))
         percent_bytes_loss_final.append(float(i/len(start_size)))
+        left.append(int (y + 1))
 
     #-------------------------------------TAB_1-------------------------------------#
     tab1 = ttk.Frame(nb)
@@ -176,7 +175,7 @@ def _chose_file():
 button = tkinter.Button(master=root, text="Quit", command=_quit)
 button.pack(side=tkinter.RIGHT, padx=5, pady=5)
 
-button1 = tkinter.Button(master=root, text="Chose File", command=_chose_file)
+button1 = tkinter.Button(master=root, text="Choose File", command=_chose_file)
 button1.pack(side=tkinter.RIGHT)
 
 tkinter.mainloop()

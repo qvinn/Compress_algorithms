@@ -8,6 +8,7 @@
 #include "huffman.h"
 #include "huffman_adaptive.h"
 #include "arithmetic_adaptive.h"
+#include "lzrw1.h"
 
 using namespace std;
 
@@ -579,6 +580,57 @@ void arithmetic_addaptive_test(char *file, char *encode_file, char *decode_file,
     printf("FINISH ARITHMETIC_ADAPTIVE \n");
 }
 
+void lzrw1_test(char *file, char *encode_file, char *decode_file, char *logfile) {
+    operation_info info;                                // Создадим структуру
+    info.algo_name = "LZRW1";                           // Добавим название алгоритма
+    info.start_size = GetFileSize(file);                // Запишем в структуру начальный размер файла
+    //РЕАЛИЗУЕМ ГРУППУ МЕТОДОВ С АЛГОРИТМОМ LZH
+    printf("START LZRW1 \n");
+    LZRW1 lzrw1;
+
+    lzrw1.in_file = fopen(file, "rb");
+    if(lzrw1.in_file == nullptr) {
+        printf("File does not exist!");
+    }
+    lzrw1.out_file =  fopen(encode_file, "wb");
+
+    printf("Encode: \n");
+    start_clock();
+    lzrw1.compress_decompress_file(0);                  // Compress (0)
+    info.time_encode = stop_clock();                    // Запишем в структуру время архивации
+
+    fclose(lzrw1.in_file);
+    fclose(lzrw1.out_file);
+    //fclose(lzrw1.out_file);
+    info.final_size = GetFileSize(encode_file);        // Запишем в структуру финальный размер файла
+
+    lzrw1.in_file = fopen(encode_file, "rb");
+    if(lzrw1.in_file == nullptr) {
+        printf("File does not exist!");
+    }
+    lzrw1.out_file =  fopen(decode_file, "wb");
+
+    printf("Decode: \n");
+    start_clock();
+    lzrw1.compress_decompress_file(1);                  // Decompress (1)
+    info.time_decode = stop_clock();                    // Запишем в структуру время деархивации
+
+    fclose(lzrw1.in_file);
+    fclose(lzrw1.out_file);
+
+    info.percent_compression = calculate_percent_compression(info.start_size, info.final_size);   // Запишем в структуру процент "полезности"
+
+    int packets_loss = compare_files(file,decode_file);
+    float percent_packets_loss = calculate_percent_loss_packet(info.start_size,packets_loss);
+    info.packet_loss = packets_loss;
+    info.percent_packet_loss = percent_packets_loss;
+
+    add_info(logfile, info);                            // Сохранияем результаты опреций в лог файл
+
+    lzrw1.~LZRW1();
+    printf("FINISH LZRW1 \n");
+}
+
 void auto_indexing_file(std::string *file,std::string type, int i)
 {
     file->append(std::to_string(i));
@@ -618,6 +670,9 @@ void automating_tests(int number)
 
     std::string huffman_addaptive_test_file_encode = "Data/huffman_addaptive_test_file_encode";
     std::string huffman_addaptive_test_file_decode = "Data/huffman_addaptive_test_file_decode";
+
+    std::string lzrw1_test_file_encode = "Data/lzrw1_test_file_encode";
+    std::string lzrw1_test_file_decode = "Data/lzrw1_test_file_decode";
 
     for(int i = 1; i <= number; i++)
     {
@@ -720,6 +775,17 @@ void automating_tests(int number)
 //        clear(lzh_file_path_encode, lzh_file_path_decode);
         //=============================================================
 
+        // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//LZRW1
+        auto_indexing_file(&lzrw1_test_file_encode, type_txt, i);
+        auto_indexing_file(&lzrw1_test_file_decode, type_txt, i);
+        char lzrw1_file_path_encode[lzrw1_test_file_encode.size() + 1];lzrw1_test_file_encode.copy(lzrw1_file_path_encode, lzrw1_test_file_encode.size() + 1);lzrw1_file_path_encode[lzrw1_test_file_encode.size()] = '\0';
+        char lzrw1_file_path_decode[lzrw1_test_file_decode.size() + 1];lzrw1_test_file_decode.copy(lzrw1_file_path_decode, lzrw1_test_file_decode.size() + 1);lzrw1_file_path_decode[lzrw1_test_file_decode.size()] = '\0';
+
+        lzrw1_test(main_file_path,lzrw1_file_path_encode,lzrw1_file_path_decode,log_path);
+//        clear(lzrw1_file_path_encode, lzrw1_file_path_decode);
+        //============================================================
+
+
         // БЛОК_ОПЕРАЦИЙ_ДЛЯ--------------------------------------//HUFFMAN (не справляется с большими файлами)
 //        auto_indexing_file(&huffman_test_file_encode, type_txt, i);
 //        auto_indexing_file(&huffman_test_file_decode, type_txt, i);
@@ -772,12 +838,15 @@ void automating_tests(int number)
         huffman_addaptive_test_file_encode = "Data/huffman_addaptive_test_file_encode";
         huffman_addaptive_test_file_decode = "Data/huffman_addaptive_test_file_decode";
 
+        lzrw1_test_file_encode = "Data/lzrw1_test_file_encode";
+        lzrw1_test_file_decode = "Data/lzrw1_test_file_decode";
+
     }
 }
 
 int main(int argc, char *argv[]) {
-    printf("|---------------------ALL_TESTS_STARTED-------------------|");
-    automating_tests(4); // ВНИМАНИЕ - ставить число тестов на 1 больше, чем файлов(мин. 2)
-    printf("|---------------------ALL_TESTS_ENDED---------------------|");
+    printf("|---------------------ALL_TESTS_STARTED-------------------|\n");
+    automating_tests(4);
+    printf("|---------------------ALL_TESTS_ENDED---------------------|\n");
     return EXIT_SUCCESS;
 }
