@@ -10,6 +10,7 @@ SOURCES += \
     lz77.cpp \
     lzari.cpp \
     lzh.cpp \
+    lzrw1.cpp \
     lzss.cpp \
     lzw.cpp \
     main.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     lz77.h \
     lzari.h \
     lzh.h \
+    lzrw1.h \
     lzss.h \
     lzw.h \
     main.h \
